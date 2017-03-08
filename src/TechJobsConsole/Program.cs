@@ -65,7 +65,7 @@ namespace TechJobsConsole
                     {
                         //Thinking this is where the FindbyValue code goes
                         //Console.WriteLine("Search all fields not yet implemented.");
-                        searchResults = JobData.FindbyValue(columnChoice, searchTerm);
+                        searchResults = JobData.FindbyValue(searchTerm);
                     }
                     else
                     {
