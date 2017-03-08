@@ -65,25 +65,36 @@ namespace TechJobsConsole
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
 
             foreach (Dictionary<string, string> row in AllJobs)
-            {
-                string aValue = row[column];
-
-                if (aValue.Contains(value))
+                foreach (KeyValuePair<string, string> field in row)
                 {
-                    int i = 0;
+                    string aValue = field.Value;
+                    string newValue = aValue.ToUpper();
+                    string newSearchTerm = searchTerm.ToUpper();
 
-                    do
+
+                    if (newValue.Contains(newSearchTerm))
                     {
-                        jobs.Add(row);
+                        int i = 0;
 
-                        i++;
+                        do
+                        {
+                            jobs.Add(row);
+
+                            i++;
+                        }
+
+                        while (i < 2);
+
+                        return jobs;
                     }
 
-                    while (i < 2);
+                    else
+                    {
+                        return null;
 
-                    return jobs;
+                    }
                 }
-            }
+        }
 
 
         /*

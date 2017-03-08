@@ -65,7 +65,7 @@ namespace TechJobsConsole
                     {
                         //Thinking this is where the FindbyValue code goes
                         //Console.WriteLine("Search all fields not yet implemented.");
-                        searchResults = JobData.FindbyValue(column, value)
+                        searchResults = JobData.FindbyValue(columnChoice, searchTerm);
                     }
                     else
                     {
@@ -120,15 +120,24 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            if (GetUserSelection.isValidChoice();)
-                { someJobs.Sort();
-                    //for (int i=0; i<someJobs.Count; i++)
-                    foreach (Dictionary<string, string> job in someJobs)
-                        foreach (KeyValuePair<string, string> kvp in job)
-                            { Console.WriteLine("{0}:{1}", kvp.Key, kvp.Value); }
-                 }
+            if (GetUserSelection.isValidChoice())
+
+            { someJobs.Sort();
+                //for (int i=0; i<someJobs.Count; i++)
+                foreach (Dictionary<string, string> job in someJobs)
+                    foreach (KeyValuePair<string, string> kvp in job)
+                    {
+                        Console.WriteLine("{0}:{1}", kvp.Key, kvp.Value);
+                    }
+            }
+
             else
-                { Console.WriteLine("printJobs is not implemented yet"); }
+                {
+                Console.WriteLine("There are no results");
+                }
         }
+
+
     }
+
 }
