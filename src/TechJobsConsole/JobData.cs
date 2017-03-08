@@ -85,7 +85,7 @@ namespace TechJobsConsole
 
                         while (i < 2);
 
-                        return jobs;
+                        //break?
                     }
 
                     else
@@ -94,6 +94,8 @@ namespace TechJobsConsole
 
                     }
                 }
+            return jobs;
+
         }
 
 

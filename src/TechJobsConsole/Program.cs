@@ -120,21 +120,21 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            if (GetUserSelection.isValidChoice())
+            //if (GetUserSelection.isValidChoice())
 
-            { someJobs.Sort();
-                //for (int i=0; i<someJobs.Count; i++)
-                foreach (Dictionary<string, string> job in someJobs)
-                    foreach (KeyValuePair<string, string> kvp in job)
-                    {
-                        Console.WriteLine("{0}:{1}", kvp.Key, kvp.Value);
-                    }
-            }
-
-            else
+       someJobs.Sort();
+            //for (int i=0; i<someJobs.Count; i++)
+            foreach (Dictionary<string, string> job in someJobs)
+                foreach (KeyValuePair<string, string> kvp in job)
                 {
-                Console.WriteLine("There are no results");
+                    Console.WriteLine("{0}:{1}", kvp.Key, kvp.Value);
                 }
+       
+
+            //else
+                //{
+                //Console.WriteLine("There are no results");
+                //}
         }
 
 
