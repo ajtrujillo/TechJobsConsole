@@ -49,7 +49,7 @@ namespace TechJobsConsole
             {
                 string aValue = row[column];
 
-                if (aValue.Contains(value))
+                if (aValue.ToUpper().Contains(value))
                 {
                     jobs.Add(row);
                 }
@@ -63,40 +63,50 @@ namespace TechJobsConsole
             LoadData();
 
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+            Dictionary<string, string> tempDict = new Dictionary<string, string>();
 
-            foreach (Dictionary<string, string> row in AllJobs)
-                foreach (KeyValuePair<string, string> field in row)
+            for (int i = 0; i < AllJobs.Count; i++)
+            {
+                tempDict = AllJobs[i];
+            }
+
+            foreach (KeyValuePair<string, string> entry in tempDict)
+            {
+                if (entry.Value.ToUpper().Contains(searchTerm))
                 {
-                    string aValue = field.Value;
-                    string newValue = aValue.ToUpper();
-                    string newSearchTerm = searchTerm.ToUpper();
-
-
-                    if (newValue.Contains(newSearchTerm))
-                    {
-                        int i = 0;
-
-                        do
-                        {
-                            jobs.Add(row);
-
-                            i++;
-                        }
-
-                        while (i < 2);
-
-                        //break?
-                    }
-
-                    else
-                    {
-                        return null;
-
-                    }
+                    jobs.Add(tempDict);
+                    break;
                 }
+            }
+
             return jobs;
 
         }
+
+
+
+        //// if (newValue.Contains(newSearchTerm))
+        // {
+        //     int i = 0;
+
+        //     do
+        //     {
+        //         jobs.Add(row);
+
+        //         i++;
+        //     }
+
+        //     while (i < 2);
+
+        //     //break?
+        // }
+
+        // else
+        // {
+        //     return null;
+
+        // }
+
 
 
         /*

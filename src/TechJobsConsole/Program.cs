@@ -57,7 +57,7 @@ namespace TechJobsConsole
                     // What is their search term?
                     Console.WriteLine("\nSearch term: ");
                     string searchTerm = Console.ReadLine();
-
+                    string upperSearchTerm = searchTerm.ToUpper();
                     List<Dictionary<string, string>> searchResults;
 
                     // Fetch results
@@ -65,11 +65,12 @@ namespace TechJobsConsole
                     {
                         //Thinking this is where the FindbyValue code goes
                         //Console.WriteLine("Search all fields not yet implemented.");
-                        searchResults = JobData.FindbyValue(searchTerm);
+                        searchResults = JobData.FindbyValue(upperSearchTerm);
+                        PrintJobs(searchResults);
                     }
                     else
                     {
-                        searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
+                        searchResults = JobData.FindByColumnAndValue(columnChoice, upperSearchTerm);
                         PrintJobs(searchResults);
                     }
                 }
@@ -120,24 +121,23 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            //if (GetUserSelection.isValidChoice())
-
-       someJobs.Sort();
-            //for (int i=0; i<someJobs.Count; i++)
-            foreach (Dictionary<string, string> job in someJobs)
-                foreach (KeyValuePair<string, string> kvp in job)
+            if (someJobs.Count == 0)
+            { Console.WriteLine("No results found."); }
+            else
+            {
+                for (int i = 0; i < someJobs.Count; i++)
                 {
-                    Console.WriteLine("{0}:{1}", kvp.Key, kvp.Value);
-                }
-       
 
-            //else
-                //{
-                //Console.WriteLine("There are no results");
-                //}
+                    foreach (KeyValuePair<string, string> kvp in someJobs[i])
+                    {
+                        Console.WriteLine("{0}:{1}", kvp.Key, kvp.Value);
+                    }
+                    Console.WriteLine("   ***   ");
+                }
+            }
+
+
         }
 
-
     }
-
 }
