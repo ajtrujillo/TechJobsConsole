@@ -63,51 +63,17 @@ namespace TechJobsConsole
             LoadData();
 
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
-            Dictionary<string, string> tempDict = new Dictionary<string, string>();
 
-            for (int i = 0; i < AllJobs.Count; i++)
-            {
-                tempDict = AllJobs[i];
-            }
+            foreach (Dictionary<string, string> row in AllJobs)
 
-            foreach (KeyValuePair<string, string> entry in tempDict)
-            {
-                if (entry.Value.ToUpper().Contains(searchTerm))
+                if (row.ContainsValue(searchTerm))
                 {
-                    jobs.Add(tempDict);
-                    break;
+                    jobs.Add(row);
                 }
-            }
 
             return jobs;
 
         }
-
-
-
-        //// if (newValue.Contains(newSearchTerm))
-        // {
-        //     int i = 0;
-
-        //     do
-        //     {
-        //         jobs.Add(row);
-
-        //         i++;
-        //     }
-
-        //     while (i < 2);
-
-        //     //break?
-        // }
-
-        // else
-        // {
-        //     return null;
-
-        // }
-
-
 
         /*
          * Load and parse data from job_data.csv
