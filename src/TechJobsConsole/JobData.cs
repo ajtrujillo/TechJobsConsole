@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -8,6 +9,7 @@ namespace TechJobsConsole
     class JobData
     {
         static List<Dictionary<string, string>> AllJobs = new List<Dictionary<string, string>>();
+        StringComparer curCulIgCase = StringComparer.CurrentCultureIgnoreCase;
         static bool IsDataLoaded = false;
 
         public static List<Dictionary<string, string>> FindAll()
@@ -65,13 +67,17 @@ namespace TechJobsConsole
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
 
             foreach (Dictionary<string, string> row in AllJobs)
-
-                if (row.ContainsValue(searchTerm))
+                foreach(KeyValuePair<string,string> kvp in row)
                 {
-                    jobs.Add(row);
-                }
+                    string aValue = kvp.Value.ToUpper();
 
-            return jobs;
+                    if (aValue.Contains(searchTerm)) 
+                    {
+                        jobs.Add(row);
+                        break;
+                    }
+                }
+               return jobs;
 
         }
 
@@ -107,7 +113,7 @@ namespace TechJobsConsole
             // Parse each row array into a more friendly Dictionary
             foreach (string[] row in rows)
             {
-                Dictionary<string, string> rowDict = new Dictionary<string, string>();
+                Dictionary<string, string> rowDict = new Dictionary<string, string>((StringComparer.OrdinalIgnoreCase));
 
                 for (int i = 0; i < headers.Length; i++)
                 {
