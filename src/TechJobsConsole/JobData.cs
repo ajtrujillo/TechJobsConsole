@@ -40,6 +40,7 @@ namespace TechJobsConsole
             return values;
         }
 
+        /*Enable user search by column header(key), then search within values, case insensitive*/
         public static List<Dictionary<string, string>> FindByColumnAndValue(string column, string value)
         {
             // load data, if not already loaded
@@ -60,6 +61,7 @@ namespace TechJobsConsole
             return jobs;
         }
 
+        /*Enable user Search by any value in the table, without duplicates*/
         public static List<Dictionary<string, string>> FindbyValue(string searchTerm)
         {
             LoadData();
